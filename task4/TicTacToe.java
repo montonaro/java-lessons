@@ -65,7 +65,7 @@ public class TicTacToe {
 	}
 	
 	/**
-	 * Делаем ход.
+	 * Р”РµР»Р°РµРј С…РѕРґ.
 	 */
 	public void setStep(int x, int y){ 
 		
@@ -79,11 +79,11 @@ public class TicTacToe {
 	}
 	
 	/**
-	 * Вывод сообщения чей сейчас ход
+	 * Р’С‹РІРѕРґ СЃРѕРѕР±С‰РµРЅРёСЏ С‡РµР№ СЃРµР№С‡Р°СЃ С…РѕРґ
 	 */
 	public void getUserMessage(){
 		System.out.println("");
-		System.out.print("Игрок №"+activeUser+" - введите координаты хода, пример (1x0): ");
+		System.out.print("РРіСЂРѕРє в„–"+activeUser+" - РІРІРµРґРёС‚Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹ С…РѕРґР°, РїСЂРёРјРµСЂ (1x0): ");
 	}
 	
 	@SuppressWarnings("resource")
@@ -106,12 +106,12 @@ public class TicTacToe {
 					sc = new Scanner(System.in);
 					
 					if(x == 0){
-						System.out.print("Введите количество клеток (целое число) по X (минимальный размер 3): ");
+						System.out.print("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ РєР»РµС‚РѕРє (С†РµР»РѕРµ С‡РёСЃР»Рѕ) РїРѕ X (РјРёРЅРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ 3): ");
 						x = sc.nextInt();
 					}
 					
 					if(y == 0){
-						System.out.print("Введите количество клеток (целое число) по Y (минимальный размер 3): ");
+						System.out.print("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ РєР»РµС‚РѕРє (С†РµР»РѕРµ С‡РёСЃР»Рѕ) РїРѕ Y (РјРёРЅРёРјР°Р»СЊРЅС‹Р№ СЂР°Р·РјРµСЂ 3): ");
 						y = sc.nextInt();
 					}
 					
@@ -120,7 +120,7 @@ public class TicTacToe {
 					init = true;
 					//obj.getUserMessage(); 
 				} catch(InputMismatchException e){
-					System.out.println("Введены не верные символы. Повторите попытку."); 
+					System.out.println("Р’РІРµРґРµРЅС‹ РЅРµ РІРµСЂРЅС‹Рµ СЃРёРјРІРѕР»С‹. РџРѕРІС‚РѕСЂРёС‚Рµ РїРѕРїС‹С‚РєСѓ."); 
 				}   
 			} else {
 				String str = sc.nextLine(); 
@@ -139,14 +139,14 @@ public class TicTacToe {
 								obj.show();
 								
 							} else {
-								System.out.println("Желаемое вами поле - занято"); 
+								System.out.println("Р–РµР»Р°РµРјРѕРµ РІР°РјРё РїРѕР»Рµ - Р·Р°РЅСЏС‚Рѕ"); 
 							}		 
 							
 						} catch(NumberFormatException e){
-							System.out.println("Координаты: должны быть целые числа!"); 
+							System.out.println("РљРѕРѕСЂРґРёРЅР°С‚С‹: РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ С†РµР»С‹Рµ С‡РёСЃР»Р°!"); 
 						} 
 					} else {
-						System.out.println("Координаты должны быть вида (1x0)!"); 
+						System.out.println("РљРѕРѕСЂРґРёРЅР°С‚С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІРёРґР° (1x0)!"); 
 					}
 				}   
 				obj.getUserMessage(); 
