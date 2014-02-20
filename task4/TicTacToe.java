@@ -298,6 +298,8 @@ public class TicTacToe {
 							if(status > 0){				
 								
 								if(obj.checkStop()){
+									obj.setStep();  
+									obj.show();
 									System.out.println("Кoнец. Победа игрока №"+obj.activeUser); 
 									break;
 								} 
