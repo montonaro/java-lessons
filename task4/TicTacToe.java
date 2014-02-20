@@ -297,15 +297,18 @@ public class TicTacToe {
 							//switch
 							if(status > 0){				
 								
-								if(obj.checkStop()){
-									obj.setStep();  
-									obj.show();
-									System.out.println("Кoнец. Победа игрока №"+obj.activeUser); 
-									break;
-								} 
+								boolean end = obj.checkStop();
+								String message = "Кoнец. Победа игрока №"+obj.activeUser;
+								
 								
 								obj.setStep();  
 								obj.show();
+								
+								
+								if(end){  
+									System.out.println(message); 
+									break;
+								} 
 								
 							} else if(status == -1){
 								System.out.println("Выход за диапазон"); 
