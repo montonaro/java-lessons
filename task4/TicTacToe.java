@@ -243,7 +243,7 @@ public class TicTacToe {
 		System.out.print("Игрок №"+activeUser+" - введите координаты хода, пример (1x0): ");
 	}
 	
-	@SuppressWarnings("resource")
+
 	public static void main(String [] args){
 		
 		Scanner sc = null; 
