@@ -45,7 +45,8 @@ public class Calculator {
 					int var = Integer.parseInt(strArr[i]);
 
 					stack.push(""+var);  
-		        } catch (NumberFormatException e) {
+		        		continue;
+		        	} catch (NumberFormatException e) {
  
 		        	if(isOperator(tmp)){
 
