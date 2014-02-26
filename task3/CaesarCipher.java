@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 public class CaesarCipher {
 	
 	private static int step    			= 3;
-	private static String alphabetUP 	= "ÀÁÂÃÄÅ¨ÆÇÈÉÊËÌÍÎÏĞÑÒÓÔÕÖ×ØÙÚÛÜİŞß";  
+	private static String alphabetUP 	= "ĞĞ‘Ğ’Ğ“Ğ”Ğ•ĞĞ–Ğ—Ğ˜Ğ™ĞšĞ›ĞœĞĞĞŸĞ Ğ¡Ğ¢Ğ£Ğ¤Ğ¥Ğ¦Ğ§Ğ¨Ğ©ĞªĞ«Ğ¬Ğ­Ğ®Ğ¯";  
 	private static boolean right 		= true;
 	
 	public static char getLetter(char letter){
@@ -62,7 +62,7 @@ public class CaesarCipher {
 	
 	public static void main(String args[]){
 		
-		System.out.print("Ââåäèòå òåêñò äëÿ ïåğåâîäà: ");
+		System.out.print("Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ñ‚ĞµĞºÑÑ‚ Ğ´Ğ»Ñ Ğ¿ĞµÑ€ĞµĞ²Ğ¾Ğ´Ğ°: ");
 		
 		try { 
 			BufferedReader Inner = new BufferedReader(new InputStreamReader(System.in)); 
@@ -91,12 +91,12 @@ public class CaesarCipher {
 						result = encrypt(str); 
 					}
 					
-					System.out.print("Ğåçóëüòàò: "+result);
+					System.out.print("Ğ ĞµĞ·ÑƒĞ»ÑŒÑ‚Ğ°Ñ‚: "+result);
 				} catch (NullPointerException e) {}
 				
 			 
 				System.out.println("");
-				System.out.print("Ââåäèòå òåêñò äëÿ ïåğåâîäà: ");
+				System.out.print("Ğ’Ğ²ĞµĞ´Ğ¸Ñ‚Ğµ Ñ‚ĞµĞºÑÑ‚ Ğ´Ğ»Ñ Ğ¿ĞµÑ€ĞµĞ²Ğ¾Ğ´Ğ°: ");
 			}  
 		} catch (IOException eX) {}   
 		
