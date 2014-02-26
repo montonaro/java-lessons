@@ -58,5 +58,6 @@ public class Trash {
 		}		
 		System.out.println(" "+ count );
 	}
+	
 
 }
