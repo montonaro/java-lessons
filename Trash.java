@@ -60,3 +60,44 @@ public class Trash {
 	}
 
 }
+
+
+public class taks1 {
+	
+	/**
+	 * 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97
+	 */
+	public static boolean checkNatural(int number){
+		
+		for(int i = 2; i < number; i++){ 
+			if(number%i == 0){
+				return false;
+			}
+		}		
+		return true;
+	}
+	
+	public static void main(String [] args){
+			
+		for(int i = 2; i < 100; i++){			
+			
+			if(checkNatural(i)){
+				System.out.print(" "+i);
+			}
+		}	
+		
+		System.out.println(" ");
+		System.out.println(" ");
+		
+		int inRow = 0;
+		for(char ch = 'A'; ch <= 'Z'; ch++){	
+
+			if(inRow == 4){
+				inRow = 0;
+				System.out.println(" ");
+			}
+			System.out.print(" "+ch);
+			inRow++;
+		}
+	}	
+}
