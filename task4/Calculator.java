@@ -1,6 +1,5 @@
 package task4;
  
-
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -45,8 +44,8 @@ public class Calculator {
 					int var = Integer.parseInt(strArr[i]);
 
 					stack.push(""+var);  
-		        		continue;
-		        	} catch (NumberFormatException e) {
+					continue;
+		        } catch (NumberFormatException e) {
  
 		        	if(isOperator(tmp)){
 
@@ -144,7 +143,13 @@ public class Calculator {
 	}  
 
 	public String getString(){
-		return  output + " "+  stack.pop();
+		
+		if(stack.size() > 0){
+			return  output + " "+  stack.pop();
+		} else {
+			return  output;
+		}
+		
 	}
 
 	public void consider(char ch, int status){    
