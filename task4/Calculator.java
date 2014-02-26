@@ -109,7 +109,7 @@ public class Calculator {
 		}  // end while	 
 		
 		stack.push(""+ch);           
-    }  
+    	}  
 	 
 	
 	public Calculator(String str){
