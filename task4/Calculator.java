@@ -126,9 +126,11 @@ public class Calculator {
 	}	
 	
 	
-	@SuppressWarnings("resource")
+	//@SuppressWarnings("resource")
 	public static void main(String [] args) { 
- 
+ 		
+ 		System.out.print("Введите ваше уравнение :");	
+ 		
 		Scanner sc = new Scanner(System.in);  
 		while(true){ 	 
 		  
