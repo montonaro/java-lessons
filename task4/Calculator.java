@@ -22,66 +22,68 @@ public class Calculator {
 				return false; 
 		} 	
 	}  
-	
+
 	public void calculation(String str) throws Exception{
-		
+
 		Stack<String> stack = new Stack<String>();  
-		
+
 		if(str.length() == 0 || str.replaceAll(" ", "").length() == 0 ){
 			throw new Exception("Пришла пустая строка для вычисления");
 		}
-		
+
 		char tmp = 0; 
-		
+
 		String [] strArr = str.split(" ");
-		
-		for(int i = 0; i < str.length(); i++){
-			
+
+		for(int i = 0; i < strArr.length; i++){
+
 			if(strArr[i].length() == 1){ // может быть символ
-				tmp = strArr[i].charAt(i);
 				
+				tmp = strArr[i].charAt(0);
+
 				try {
-					int var = Integer.parseInt(stack.pop());
-					
+					int var = Integer.parseInt(strArr[i]);
+
 					stack.push(""+var);  
 		        } catch (NumberFormatException e) {
  
 		        	if(isOperator(tmp)){
-						
+
 						if (stack.size() < 2)
 							throw new Exception("Недостаточно данных в стеке для операции "+tmp);
-						
+
 						int a 		= Integer.parseInt(stack.pop()); // тут полюбому число
 						int b 		= Integer.parseInt(stack.pop()); // тут полюбому число				
 						int res  	= 0;
-						
+
 						switch (tmp){
 							case '*': res = a*b; break;
 							case '/': res = a/b; break;
 							case '+': res = a+b; break;
 							case '-': res = a-b; break;
 						}
-						
+
 						stack.push(""+res);  
 					}
 		        }   
-				
-			} 
 
+			} 
+			
+		
 			try {
-				int var = Integer.parseInt(stack.pop());  
+				int var = Integer.parseInt(strArr[i]);  
 				stack.push(""+var);  
 			} catch (NumberFormatException e) {  
-				throw new Exception("Недопустимый символ в выражении: "+tmp);
-			}     
+				//throw new Exception("Недопустимый символ в выражении: "+strArr[i]);
+			}    
 		}
-		
+
 		if (stack.size() > 1)
 			throw new Exception("Количество операторов не соответствует количеству операндов");
-		
+
 		System.out.print(" : " + stack.pop());	
 	}
-	
+
 	/**	
 	 * @param str - заранее отформатированная строка, вида: "3 4 5 * + 7 + 4 6 - /"
 	 * @throws Exception
@@ -179,10 +181,11 @@ public class Calculator {
 		stack = new Stack<String>();  
 
 		try {
-			parseString(str);
-			System.out.println("" + getString() );
+			parseString(str);			
+			String result = getString();
 			
-			calculation(str);
+			System.out.println("" + result );
+			calculation(result);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -191,9 +194,9 @@ public class Calculator {
 
  
 	public static void main(String [] args) { 
-		
+
 		System.out.print("Введите ваше уравнение :");	 
-		
+
 		Scanner sc = new Scanner(System.in);  
 		while(true){ 	 
 
