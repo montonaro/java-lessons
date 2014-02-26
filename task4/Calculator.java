@@ -145,48 +145,24 @@ public class Calculator {
 	 * @param str - заранее отформатированная строка, вида: "3 4 5 * + 7 + 4 6 - /"
 	 * @throws Exception
 	 */
-	private void parseString(String str) throws Exception{
-
-		if(str.length() == 0 || str.replaceAll(" ", "").length() == 0 ){
-			throw new Exception("Пришла пустая строка для парсинга");
-		}
- 
-		char tmp = 0; 
-
-		for(int i = 0; i < str.length(); i++){  
-
-			tmp = str.charAt(i);
-			if(tmp == ' '){
-				continue;
-			} else if(Character.isDigit(tmp)){
-				output += tmp;
-			} else if(isOperator(tmp) || tmp == '(' || tmp == ')'){
-				output += " ";
-
-				switch(tmp){
-		            case '+':               
-		            case '-':
-		            	consider(tmp, 1);     
-		            	break;               
-		            case '*':              
-		            case '/':
-		            	consider(tmp, 2);      
-		            	break;               
-		            case '(':               
-		            	stack.push(""+tmp);   
-		               break;
-		            case ')':               
-		            	gotParen(tmp);       
-		            	break;
-		            default:                
-		            	throw new Exception("Что то не так: "+tmp); 
-	            }  // end switch
-
-			} else {
-				throw new Exception("Недопустимый символ: "+tmp);
-			}  
-		}    
-	}
+	public void calculation(String str) throws Exception{
 		
-   }
+		if(str.length() == 0 || str.replaceAll(" ", "").length() == 0 ){
+			throw new Exception("Пришла пустая строка для вычисления");
+		}
+		char tmp = 0; 
+		
+		for(int i = 0; i < str.length(); i++){
+			
+			tmp = str.charAt(i);
+			if(isOperator(tmp)){
+				
+			} else if(Character.isDigit(tmp)){
+				
+				
+			} else {
+				throw new Exception("Недопустимый символ в выражении: "+tmp);
+			}  
+		}
+	}
 }
