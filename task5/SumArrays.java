@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class SumArrays {
 	
 	private int minimalElements 	= 2;
-	private int keyTop 				    = 0;
-	private int keyBottom 			  = 0;
+	private int keyTop 		= 0;
+	private int keyBottom 		= 0;
 	private int [] arr;
 	
 	public void sum(){
