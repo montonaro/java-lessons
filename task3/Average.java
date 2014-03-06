@@ -22,7 +22,7 @@ public class Average {
 						sum += value; 
 						countNumbers++;
 					} catch	(NumberFormatException e ){ 
-						System.out.println( "Îøèáêà ââîäà  " + e);
+						System.out.println( "ÐžÑˆÐ¸Ð±ÐºÐ° Ð²Ð²Ð¾Ð´Ð°  " + e);
 					}
 				} 
 				
@@ -46,7 +46,7 @@ public class Average {
 				String str = Inner.readLine(); 
 				if(!str.equals(null)){
 					double r = action(str); 
-					System.out.println( str + " èõ ñðåäíåå àðèôìåòè÷åñêîå => " + r);
+					System.out.println( str + " Ð¸Ñ… ÑÑ€ÐµÐ´Ð½ÐµÐµ Ð°Ñ€Ð¸Ñ„Ð¼ÐµÑ‚Ð¸Ñ‡ÐµÑÐºÐ¾Ðµ => " + r);
 				}
 			}  
 		} catch (IOException eX) {}   

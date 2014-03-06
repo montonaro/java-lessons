@@ -61,9 +61,9 @@ public class Convert {
 	}
 
 	/**	
-	 * @param str - значение
-	 * @param in из какой системы
-	 * @return - 10е число
+	 * @param str - Р·РЅР°С‡РµРЅРёРµ
+	 * @param in РёР· РєР°РєРѕР№ СЃРёСЃС‚РµРјС‹
+	 * @return - 10Рµ С‡РёСЃР»Рѕ
 	 */
 	public static int to10(String str, int in ){
 		
@@ -80,9 +80,9 @@ public class Convert {
 	}
 	
 	/**
-	 * метод для проверки на корректный ввод числа
-	 * @param str -  уже проверенная на пустоту
-	 * @param max - верхняя граница до какой проходит true
+	 * РјРµС‚РѕРґ РґР»СЏ РїСЂРѕРІРµСЂРєРё РЅР° РєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ С‡РёСЃР»Р°
+	 * @param str -  СѓР¶Рµ РїСЂРѕРІРµСЂРµРЅРЅР°СЏ РЅР° РїСѓСЃС‚РѕС‚Сѓ
+	 * @param max - РІРµСЂС…РЅСЏСЏ РіСЂР°РЅРёС†Р° РґРѕ РєР°РєРѕР№ РїСЂРѕС…РѕРґРёС‚ true
 	 * @return true/false
 	 */
 	public static boolean checkRow(String str, int max){
@@ -102,7 +102,7 @@ public class Convert {
 	
 	public static void main(String args[]){
 		
-		System.out.print("Введите положительное число: ");
+		System.out.print("Р’РІРµРґРёС‚Рµ РїРѕР»РѕР¶РёС‚РµР»СЊРЅРѕРµ С‡РёСЃР»Рѕ: ");
 		
 		try { 
 			BufferedReader Inner = new BufferedReader(new InputStreamReader(System.in)); 
@@ -129,17 +129,17 @@ public class Convert {
 							int number = Integer.parseInt(str);  
 							if(checkRow(str, 10)){
 								 
-								System.out.print("16-е представление числа ["+str+"] " + out10(number, 16)); 
+								System.out.print("16-Рµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ С‡РёСЃР»Р° ["+str+"] " + out10(number, 16)); 
 							}   						
 						} catch	(NumberFormatException e ){ 
-							System.out.println( "Ошибка ввода  " + e.toString());
+							System.out.println( "РћС€РёР±РєР° РІРІРѕРґР°  " + e.toString());
 						}
 					} else if(!subString.equals(null) && checkRow(subString, 16)){						
-						System.out.println("10-е представление числа ["+str+"] " + to10(subString, 16));						
+						System.out.println("10-Рµ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ С‡РёСЃР»Р° ["+str+"] " + to10(subString, 16));						
 					}					
 				}
 				System.out.println("");
-				System.out.print("Введите положительное число: ");
+				System.out.print("Р’РІРµРґРёС‚Рµ РїРѕР»РѕР¶РёС‚РµР»СЊРЅРѕРµ С‡РёСЃР»Рѕ: ");
 			}  
 		} catch (IOException eX) {}   
 		
