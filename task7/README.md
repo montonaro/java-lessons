@@ -6,7 +6,7 @@
 
 
 
-out<br>
+<b>out</b><br>
 find Seva 01/02/1986<br>
 find Date 28/03/1990<br>
 Seva Evgienko<br>
