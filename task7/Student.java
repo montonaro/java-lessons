@@ -1,5 +1,8 @@
 
 package task7;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -30,8 +33,10 @@ public class Student {
 		this.surname = surname;
 	}
 	
-	public Date getBirth() {
-		return birth;
+	public String getBirth(){
+		
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); 
+		return df.format(birth);
 	}
 	
 	public void setBirth(Date birth) {

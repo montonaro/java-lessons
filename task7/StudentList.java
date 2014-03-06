@@ -1,5 +1,7 @@
 package task7; 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class StudentList {
@@ -53,6 +55,16 @@ public class StudentList {
 	public int find(String q) {
 		for (int i = 0; i < p; i++) {
 			if (list[i].getName().equalsIgnoreCase(q) || list[i].getSurname().equalsIgnoreCase(q))
+				return i;
+		}
+		
+		return -1;
+	}
+	
+	public int find(Date q) {
+		for (int i = 0; i < p; i++) {  
+ 
+			if (list[i].getBirth().equals(new SimpleDateFormat("dd/MM/yyyy").format(q)))
 				return i;
 		}
 		
