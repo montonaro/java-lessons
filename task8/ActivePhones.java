@@ -1,6 +1,5 @@
 package task8;  
 
-import task7.Student;
 
 public class ActivePhones {
 
