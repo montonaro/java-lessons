@@ -19,6 +19,7 @@ public class MainClass {
 		try{
 			IPhone iphone = new IPhone("123-45-63"); 
 			iphone.call("123-45-67");
+			iphone.call("123-45-67");
 			iphone.call("123-45-17");
 			
 		} catch(IOException e){
@@ -35,6 +36,6 @@ public class MainClass {
 		} 
 		System.out.println("----------------------------------");
 		
-		System.out.println("Общее количество звонков:"+ Phone.getCountAllCall());
+		System.out.println("РћР±С‰РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·РІРѕРЅРєРѕРІ:"+ Phone.getCountAllCall());
 	}
 }
