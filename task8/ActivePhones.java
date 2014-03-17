@@ -46,9 +46,8 @@ public class ActivePhones {
 	private void showAll(){
 		
 		if(p > 0){
-			for(int i = 0; i < p; i++){ 
-				Phone item = list[i]; 
-				System.out.println(item.getPhone()); 
+			for(int i = 0; i < p; i++){  
+				System.out.println(list[i].getPhone()); 
 			}
 		}
 	}
