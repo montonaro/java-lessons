@@ -18,15 +18,15 @@ public abstract class Phone {
 	
 	public Phone( String number) throws IOException{
 				
-		//можно было бы написать валидацию для номера телефона. 
-		//так как нам на номер телефона все равно, это упускается.
+		//РјРѕР¶РЅРѕ Р±С‹Р»Рѕ Р±С‹ РЅР°РїРёСЃР°С‚СЊ РІР°Р»РёРґР°С†РёСЋ РґР»СЏ РЅРѕРјРµСЂР° С‚РµР»РµС„РѕРЅР°. 
+		//С‚Р°Рє РєР°Рє РЅР°Рј РЅР° РЅРѕРјРµСЂ С‚РµР»РµС„РѕРЅР° РІСЃРµ СЂР°РІРЅРѕ, СЌС‚Рѕ СѓРїСѓСЃРєР°РµС‚СЃСЏ.
 		phoneNumber = number; 
 			
 		if(list == null){ 
 			list = new ActivePhones();
 		} else {
 			if(list.find(number) >= 0){
-				throw new IOException ("Номер '"+number+"' уже зарегестрирован.");
+				throw new IOException ("РќРѕРјРµСЂ '"+number+"' СѓР¶Рµ Р·Р°СЂРµРіРµСЃС‚СЂРёСЂРѕРІР°РЅ.");
 			}
 		}			 
 		
@@ -69,12 +69,12 @@ public abstract class Phone {
 		
 		try{
 			if(number == phoneNumber){
-				throw new IOException ("Вы пытаетесь позвонить на свой же номер.");
+				throw new IOException ("Р’С‹ РїС‹С‚Р°РµС‚РµСЃСЊ РїРѕР·РІРѕРЅРёС‚СЊ РЅР° СЃРІРѕР№ Р¶Рµ РЅРѕРјРµСЂ.");
 			}
 			
 			int i = list.find(number);
 			if(i < 0){
-				throw new IOException ("Номер '"+number+"' не найден.");
+				throw new IOException ("РќРѕРјРµСЂ '"+number+"' РЅРµ РЅР°Р№РґРµРЅ.");
 			}
 			
 			Phone p = list.get(i);
@@ -95,6 +95,6 @@ public abstract class Phone {
 	} 
 	
 	public void answer(){ 
-		System.out.println(this.getClass().getName()+"("+this.getPhone()+"): Алё");
+		System.out.println(this.getClass().getName()+"("+this.getPhone()+"): РђР»С‘");
 	}
 }
