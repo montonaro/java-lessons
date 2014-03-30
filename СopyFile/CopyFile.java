@@ -1,9 +1,9 @@
-package ÑopyFile;
+ï»¿package CopyFile;
 
 import java.io.*;
  
 
-public class ÑopyFile  extends MyFiles { 
+public class CopyFile extends MyFiles { 
 	
 	public void copyFile(String src, String dest) {
 		  

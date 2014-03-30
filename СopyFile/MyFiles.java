@@ -1,4 +1,4 @@
-package СopyFile;
+п»їpackage CopyFile;
 
 import java.io.*;
 
@@ -12,7 +12,7 @@ public class MyFiles {
 		
 		File f = new File(fileName);
 		if(!f.exists() || !f.isFile()){ 	
-			throw new FileNotFoundException("Исходный файл не найден");
+			throw new FileNotFoundException("РСЃС…РѕРґРЅС‹Р№ С„Р°Р№Р» РЅРµ РЅР°Р№РґРµРЅ");
 		}
 	} 
 
@@ -20,7 +20,7 @@ public class MyFiles {
 		
 		File f = new File(fileName);
 		if(f.isDirectory()){ 	
-			throw new FileNotFoundException("Вы не указали имя конечного файла");
+			throw new FileNotFoundException("Р’С‹ РЅРµ СѓРєР°Р·Р°Р»Рё РёРјСЏ РєРѕРЅРµС‡РЅРѕРіРѕ С„Р°Р№Р»Р°");
 		} 
 		
 		String [] dirs = fileName.split("\\\\");
@@ -34,7 +34,7 @@ public class MyFiles {
 					f = new File(path);
 					if(!f.isDirectory()){
 						f.mkdir();
-						//throw new Exception("Путь:("+path+"). Не найден.");
+						//throw new Exception("РџСѓС‚СЊ:("+path+"). РќРµ РЅР°Р№РґРµРЅ.");
 					} 
 				}  
 			}
@@ -50,7 +50,7 @@ public class MyFiles {
 			   if(key > 0){
 				   out.write(key);
 			   } else {
-				   System.out.println("Операция завершена."); 
+				   System.out.println("РћРїРµСЂР°С†РёСЏ Р·Р°РІРµСЂС€РµРЅР°."); 
 				   break;
 			   }			   
 	    	 } 

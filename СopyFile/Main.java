@@ -1,10 +1,10 @@
-package ÑopyFile; 
+ï»¿package CopyFile; 
  
 
 public class Main {
 	public static void main(String[] args) {
 		
-		ÑopyFile c = new ÑopyFile(); 
+		CopyFile c = new CopyFile(); 
 		c.copyFile("c:\\tmp\\1.txt", "c:\\tmp\\dir\\1.txt");
 
 		MergeFiles m = new MergeFiles(); 
