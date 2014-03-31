@@ -5,7 +5,7 @@ import java.io.*;
 
 public class CopyFile extends MyFiles { 
 	
-	public void copyFile(String src, String dest) {
+	public void copyFile(String src, String dest)  throws IOException {
 		
 		BufferedInputStream in   = null;
 		BufferedOutputStream out = null;
@@ -23,19 +23,9 @@ public class CopyFile extends MyFiles {
    	       System.out.println(e.getMessage()); 
    	    }finally {
    	    	
-   	    	try {
-				if (in != null)
-			       in.close();
-			} catch(IOException e) {
-			     ;
-			} 
-   	    	
-   	    	try {
-				if (out != null)
-					out.close();
-			} catch(IOException e) {
-			     ;
-			} 
+   	  	in.close();
+		out.close();
+			
 	    }
 	 
 	}
