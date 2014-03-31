@@ -2,39 +2,39 @@ package copyFile;
 
 import java.io.*;
 
-abstract class MyFiles { 
+public class MergeFiles extends MyFiles { 
 	
-	protected static void checkFile(String fileName) throws FileNotFoundException{
+	public void merge(String src1, String src2, String dest) throws IOException {
 		
-		File f = new File(fileName);
-		if(!f.exists() || !f.isFile()){ 	
-			throw new FileNotFoundException("Исходный файл не найден");
-		}
+		SequenceInputStream  in   	= null;
+		BufferedOutputStream out  	= null;
+		FileInputStream  f1   		= null;
+		FileInputStream f2  		= null;
+		
+		try{
+			checkFile(src1); 
+			checkFile(src2);  
+			checkDest(dest); 
+			
+			f1 = new FileInputStream(src1);
+			f2 = new FileInputStream(src2);
+			
+			in = new SequenceInputStream(f1, f2);		
+			out = new BufferedOutputStream(new FileOutputStream(dest));
+			
+			int marker = 0;
+			while( (marker = in.read()) != -1){  
+	            out.write(marker);  
+	        } 
+			
+		} catch (Exception e){
+   	       System.out.println(e.getMessage()); 
+		}finally { 
+		 
+			f1.close(); 
+			f2.close(); 
+			in.close();	 
+			out.close();			 
+	    } 
 	} 
-
-	protected static void checkDest(String fileName) throws FileNotFoundException{
-		
-		File f = new File(fileName);
-		if(f.isDirectory()){ 	
-			throw new FileNotFoundException("Вы не указали имя конечного файла");
-		} 
-		
-		String [] dirs = fileName.split("\\\\");
-		if(dirs.length > 0){
-			String path = "";
-			for(int i = 0; i < dirs.length; i++){
-				
-				if(i+1 < dirs.length){
-					path += dirs[i]+"\\";
-					
-					f = new File(path);
-					if(!f.isDirectory()){
-						f.mkdir();
-						//throw new Exception("Путь:("+path+"). Не найден.");
-					} 
-				}  
-			}
-		} 
-	}   
 }
- 
