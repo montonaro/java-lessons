@@ -1,12 +1,8 @@
-﻿package CopyFile;
+package copyFile;
 
 import java.io.*;
 
-public class MyFiles {
-	
-	InputStream in;
-	OutputStream out; 
- 
+abstract class MyFiles { 
 	
 	protected static void checkFile(String fileName) throws FileNotFoundException{
 		
@@ -39,28 +35,6 @@ public class MyFiles {
 				}  
 			}
 		} 
-	}  
-	 
-	
-	protected void copy() throws Exception {  
-	    try {   
-	    	int key = 0;
-	    	while(true){ 
-			   key = in.read();
-			   if(key > 0){
-				   out.write(key);
-			   } else {
-				   System.out.println("Операция завершена."); 
-				   break;
-			   }			   
-	    	 } 
-    	}catch (IOException e){
-		     ;	 
-	    } finally {
-	    	in.close();
-	    	out.close();
-	    }
-	}
-	
+	}   
 }
  
