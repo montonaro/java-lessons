@@ -1,4 +1,4 @@
-﻿package CopyFile;
+package copyFile;
 
 import java.io.*;
  
@@ -6,17 +6,37 @@ import java.io.*;
 public class CopyFile extends MyFiles { 
 	
 	public void copyFile(String src, String dest) {
-		  
+		
+		BufferedInputStream in   = null;
+		BufferedOutputStream out = null;
 		try{
 			checkFile(src); 	
 			in = new BufferedInputStream(new FileInputStream(src));	
 			checkDest(dest);  
 			out = new BufferedOutputStream(new FileOutputStream(dest));
 			
-			copy();
+			while(in.available() != 0){  
+	            out.write(in.read());  
+	        } 
+			
 		} catch (Exception e){
    	       System.out.println(e.getMessage()); 
-   	    }
+   	    }finally {
+   	    	
+   	    	try {
+				if (in != null)
+			       in.close();
+			} catch(IOException e) {
+			     ;
+			} 
+   	    	
+   	    	try {
+				if (out != null)
+					out.close();
+			} catch(IOException e) {
+			     ;
+			} 
+	    }
 	 
 	}
 	 
