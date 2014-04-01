@@ -7,13 +7,15 @@ public class MyThread extends Thread {
 	}
 	
 	public void run(){ 
-		do{ 
+		
+		while ( ! isInterrupted()) {
+			
 			try {
 				System.out.println(getName());
 	            		Thread.sleep(1000); // создадим видимость сверх вычислений
-	          	} catch (InterruptedException e) { 
-	           		return; 
-	        	} 
-		} while (!getThreadGroup().isDestroyed());  
+	        	} catch (InterruptedException e) { 
+		           return; 
+		        } 
+		}
 	}
 }
