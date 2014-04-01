@@ -2,20 +2,18 @@ package threads;
 
 public class MyThread extends Thread {
 	
-	public void run(){
-		
-		try {
-			System.out.println("ID:" + getId());
-            Thread.sleep(1000); // создадим видимость сверх вычислений
-        } catch (InterruptedException e) { 
-           return; 
-        }
-		
-		
-		while (!isInterrupted()) {
-            System.out.println(getId());
-            
-        }
-
+	MyThread(ThreadGroup  tg, String name){
+		super(tg,name);
+	}
+	
+	public void run(){ 
+		do{ 
+			try {
+				System.out.println(getName());
+	            		Thread.sleep(1000); // СЃРѕР·РґР°РґРёРј РІРёРґРёРјРѕСЃС‚СЊ СЃРІРµСЂС… РІС‹С‡РёСЃР»РµРЅРёР№
+	          	} catch (InterruptedException e) { 
+	           		return; 
+	        	} 
+		} while (!getThreadGroup().isDestroyed());  
 	}
 }
