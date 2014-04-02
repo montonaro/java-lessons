@@ -1,49 +1,44 @@
-﻿package copyFile2;
+package copyFile2;
 
 import java.io.*;  
 
 public class CopyFile2 extends AFile{ 
 	
-	public void copyFile(String src, String dest)  throws IOException, InterruptedException { 
+	public void copyFile(String src, String dest)  throws IOException, FileNotFoundException { 
 		
-			checkFile(src); 
-			File f = new File(src);
-			long len = f.length();
+		checkFile(src); 
+		File f = new File(src);
+		long len = f.length(); 
+		
+		File outFile = new File(dest);
+		//outFile.delete();
 			
-			File outFile = new File(dest);
-			//outFile.delete();
+		if (!outFile.exists()) {
+	                File parentDir = new File(outFile.getParent());
+	                if (!parentDir.exists()) {
+	                     parentDir.mkdirs();
+	                }
+	                outFile.createNewFile();
+		}
+						
+		if(len > 0){
 			
-			if (!outFile.exists()) {
-                File parentDir = new File(outFile.getParent());
-                if (!parentDir.exists()) {
-                     parentDir.mkdirs();
-                }
-                outFile.createNewFile();
-           }
+			int block = (int) Math.ceil(len/10);
 			
-			System.out.println(len);			
-			if(len > 0){
+			int off = 0;  
+			for(int i = 0; i < 10; i++){
 				
-				int block = (int) Math.ceil(len/10);
+				if(i+1 == 10){						
+					block = (int) len-off;
+				}  
 				
-				System.out.println(block);	
-				int off = 0;  
-				for(int i = 0; i < 10; i++){
-					
-					if(i+1 == 10){
-						System.out.println(len + " " + off + " " + block);	
-						block = (int) len-off;
-					}  
-					
-					//System.out.println(off+" "+ block );   
-					MyThread c = new MyThread("my thread #"+i, src, dest, off, block); 
-					c.start();
-					c.join();
-			        
-			        off +=block; 
-				}				
-			} 
-	 
+				MyThread c = new MyThread("my thread #"+i, src, dest, off, block); 
+				c.start();				
+		        
+		        	off +=block; 
+			}				
+		}   
+ 
 	} 
 	 
 }
