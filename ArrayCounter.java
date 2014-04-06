@@ -107,7 +107,7 @@ public class Main {
 	        new Thread(group, new TestThread(c, arr, offset, block)).start();
 	    }
 		
-		while(group.activeCount() > 0) {
+	    while(group.activeCount() > 0) {
             	//System.err.println("Active: >" + group.activeCount()); 
             } 
 		estimatedTime = System.nanoTime() - startTime;
