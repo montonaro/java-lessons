@@ -1,4 +1,3 @@
-
 class Container { 
     public int sum 	= 0;
 }
@@ -16,7 +15,6 @@ class TestThread  extends Thread {
          
          this.offset = offset;
          this.block  = block;      
-         //System.out.println("offset "+offset+" block "+block+" i"+i); 
     }
 
     public void run() {
@@ -44,7 +42,6 @@ public class ArrayCounter {
 
 	public static void main(String[] args) { 
 
-		//System.out.println(arr.length);
 
 		long startTime = System.nanoTime();    
 
@@ -76,10 +73,10 @@ public class ArrayCounter {
 
 	    while(group.activeCount() > 0) {
         	//System.err.println("Active: >" + group.activeCount()); 
-        } 
-		estimatedTime = System.nanoTime() - startTime;
-		System.err.println(estimatedTime);
-	        System.out.println(c.sum); 
-	    }
+            } 
+	    estimatedTime = System.nanoTime() - startTime;
+	    System.err.println(estimatedTime);
+	    System.out.println(c.sum); 
+	}
 
 } 
