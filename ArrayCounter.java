@@ -66,8 +66,8 @@ public class ArrayCounter {
 
 	    	offset = block*i;	    	
 	    	if(i+1 == blocks){	    		
-	    		block = arr.length-(block*i);	    		
-			}
+	    	    block = arr.length-(block*i);	    		
+		}
 	        new Thread(group, new TestThread(c, arr, offset, block)).start();
 	    }
 
