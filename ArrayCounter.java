@@ -1,5 +1,9 @@
+
+import java.util.concurrent.atomic.AtomicInteger;
+
 class Container { 
-    public int sum 	= 0;
+	public AtomicInteger sum = new AtomicInteger(0);
+	//public sum = 0;
 }
 
 class TestThread  extends Thread {
@@ -14,7 +18,7 @@ class TestThread  extends Thread {
          this.arr 	 = arr;
          
          this.offset = offset;
-         this.block  = block;      
+         this.block  = block;       
     }
 
     public void run() {
@@ -24,9 +28,10 @@ class TestThread  extends Thread {
     		sum = sum+arr[offset+i];
     	}   
     	
-    	synchronized (c) {  
-         	c.sum = c.sum+sum; 
-        } 
+    	c.sum.addAndGet(sum);
+    	//synchronized (c) {  
+         	//c.sum = c.sum+sum; 
+        //} 
     }
 }
 
@@ -40,8 +45,7 @@ public class ArrayCounter {
             arr[i] = 1;//(int) ( Math.random());
 	}
 
-	public static void main(String[] args) { 
-
+	public static void main(String[] args) {  
 
 		long startTime = System.nanoTime();    
 
@@ -66,17 +70,15 @@ public class ArrayCounter {
 
 	    	offset = block*i;	    	
 	    	if(i+1 == blocks){	    		
-	    	    block = arr.length-(block*i);	    		
-		}
+	    		block = arr.length-(block*i);	    		
+			}
 	        new Thread(group, new TestThread(c, arr, offset, block)).start();
 	    }
 
-	    while(group.activeCount() > 0) {
-        	//System.err.println("Active: >" + group.activeCount()); 
-            } 
-	    estimatedTime = System.nanoTime() - startTime;
-	    System.err.println(estimatedTime);
-	    System.out.println(c.sum); 
-	}
+	    while(group.activeCount() > 0) { } 
+		estimatedTime = System.nanoTime() - startTime;
+		System.err.println(estimatedTime);
+	        System.out.println(c.sum.get()); 
+	    }
 
 } 
