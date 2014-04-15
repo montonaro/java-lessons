@@ -18,7 +18,7 @@ public class Main {
 		String line 		= "";	   
 		
 		while(line == ""){
-			System.out.println("Введите.");  
+			System.out.println("Р’РІРµРґРёС‚Рµ");
 	    	line = s.nextLine().trim(); 
 	    	
 	    	String [] items;
@@ -37,7 +37,7 @@ public class Main {
         		}   
 	    		
 	    	} else {
-	    		System.err.println("пусто!"); 
+	    		System.err.println("РџСѓСЃС‚Рѕ");
 	    		line = "";
 	    	} 
 		}
