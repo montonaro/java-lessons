@@ -67,8 +67,8 @@ public class Dictionary {
 		} 
 		
 		if (s != null) {
-             s.close();
-        } 
+	             s.close();
+	        } 
 		save();
 	}
 	
@@ -76,13 +76,39 @@ public class Dictionary {
 	void show(){
 		System.out.println("Вывод из файла:"); 
 		Iterator<Map.Entry<String, String>> itr = db.entrySet().iterator(); 
-    	while (itr.hasNext()){
-    	    System.out.println(itr.next().toString());
-    	} 
+	    	while (itr.hasNext()){
+	    	    System.out.println(itr.next().toString());
+	    	} 
+	}
+	
+	void translate(){
+		
+		Scanner s 		= new Scanner(System.in);
+		String line 	= "";	   
+		String out 		= null;
+		
+		while(line == ""){
+			System.out.println("Введите строку для перевода.");  
+	    	line = s.nextLine().trim(); 
+	    	
+	    	if(line.length() > 0){    
+	    		 
+	    		out = toTranslate(line);	
+	    		System.out.println("Обработка завершена: " + line+" "+out);
+	    		
+	    	} else {
+	    		System.err.println("Ваша строка пуста! Попробуйте ввести еще раз."); 
+	    		line = "";
+	    	} 
+		}
+		 	 
+		if (s != null) {
+             		s.close();
+	 	}  
 	}
 	
 	
-	String toTranslate(String in){
+	private String toTranslate(String in){
 		
 		if(in == null){
 			return null;
