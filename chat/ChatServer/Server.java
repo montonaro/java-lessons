@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -9,10 +10,28 @@ public class Server {
 	private int port;
 	private Thread thread;
 	private List<Message> msg = Collections.synchronizedList(new ArrayList<Message>());
-
+	private final static String filesDir = "C:\\tmp\\server\\"; 
+	
 	public Server(int port) {
 		this.port = port;
-	}
+		
+		String [] dirs = filesDir.split("\\\\");
+		if(dirs.length > 0){
+			String path = "";  
+			for(int i = 0; i < dirs.length; i++){ 
+				if(i < dirs.length){
+					path += dirs[i]+"\\";
+
+					File f = new File(path);
+					if(!f.isDirectory()){
+						f.mkdir(); 
+					} 
+				}  
+			}
+			 
+		} 
+		
+	} 
 
 	public void start() throws IOException {
 		thread = new Thread() {
@@ -24,7 +43,7 @@ public class Server {
 					while ( ! isInterrupted()) {
 						Socket c = s.accept();
 						
-						ClientThread ct = new ClientThread(c, msg);
+						ClientThread ct = new ClientThread(c, msg, filesDir);
 						ct.start();
 					}
 

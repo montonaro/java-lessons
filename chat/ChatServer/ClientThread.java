@@ -9,38 +9,46 @@ public class ClientThread extends Thread {
 	private Socket socket;
 	private List<Message> msg;
 	private int pos = 0;
+	private String filesDir;
 	
-	public ClientThread(Socket socket, List<Message> msg) {
-		this.socket = socket;
-		this.msg = msg;
-		pos = msg.size();
+	public ClientThread(Socket socket, List<Message> msg, String filesDir) {
+		this.socket 	= socket;
+		this.filesDir 	= filesDir;
+		this.msg 		= msg;
+		pos 			= msg.size();
 	}
 	
 	private void listToBytes(OutputStream os) throws IOException {
 		final int sz = msg.size();
-		for (int i = pos; i < sz; i++)
-			msg.get(i).writeToStream(os);
+		for (int i = pos; i < sz; i++){
+			msg.get(i).writeToStream(os, filesDir);
+		}
 		
 		pos = msg.size();
 	}
 	
 	public void run() {
 		try {
-			final InputStream is = socket.getInputStream();
+			final InputStream is  = socket.getInputStream();
 			final OutputStream os = socket.getOutputStream();
 			
 			while ( ! isInterrupted()) {
-				if (pos < msg.size())
+				if (pos < msg.size()){
 					listToBytes(os);
+				}
 				
-				Message m = Message.readFromStream(is);
-				if (m != null)
-					msg.add(m);
+				Message m = Message.readFromStream(is, filesDir);
+				if (m != null){
+					msg.add(m); 
+				}
+				
+				
 			}
-			
-			socket.close();
-			
+			 
+			socket.close(); 
 		} catch (Exception e) {
+			
+			e.printStackTrace();
 			return;
 		}
 	}

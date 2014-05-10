@@ -28,15 +28,17 @@ public class Message implements Serializable {
 	public void writeToStream(OutputStream out)
 		throws IOException
 	{
-		ByteArrayOutputStream bs = new ByteArrayOutputStream();
-		ObjectOutputStream os = new ObjectOutputStream(bs);
+		ByteArrayOutputStream bs 	= new ByteArrayOutputStream();
+		ObjectOutputStream os 		= new ObjectOutputStream(bs);
+		 
 		try {
 			os.writeObject(this);
 			
 			if ( ! isFile) {
 				os.writeUTF(text);
 			} else {
-				// write file content
+				// write file content 
+				os.writeUTF(path);  
 			}
 		} finally {
 			os.flush();
@@ -48,10 +50,25 @@ public class Message implements Serializable {
 		DataOutputStream ds = new DataOutputStream(out);
 		ds.writeInt(packet.length);
 		ds.write(packet);
-		ds.flush();
+ 
+		
+		if(isFile){
+			BufferedInputStream bis  = new BufferedInputStream(new FileInputStream(path));
+			byte [] byteArray 		 = new byte[8192];
+			
+			ds.writeInt((int) new File(path).length());
+			
+			int in;
+			while ((in = bis.read(byteArray)) != -1){
+				ds.write(byteArray,0,in);
+			}
+			bis.close();  
+		} 
+		
+		ds.flush();		
 	}
 	
-	public static Message readFromStream(InputStream in, String login) 
+	public static Message readFromStream(InputStream in, String login, String pathFiles) 
 		throws IOException, ClassNotFoundException
 	{
 		if (in.available() <= 0)
@@ -66,15 +83,46 @@ public class Message implements Serializable {
 		ObjectInputStream os = new ObjectInputStream(bs);
 		try {
 			Message msg = (Message) os.readObject();
-
+			
+			if(msg.from.equals(login)){
+				//return null;
+			} 
+			
 			if(!msg.to.isEmpty() && !msg.to.equals(login)){
 				return null;
 			} 
 			
 			if ( ! msg.isFile) {
 				msg.text = (String) os.readUTF();
-			} else {
-				// read file content
+			} else { // read file content 
+				 
+				msg.path = (String) os.readUTF(); 				  
+				BufferedOutputStream bos = null; 				  
+				BufferedInputStream  bis = null; 
+				try {
+					bis  		      = new BufferedInputStream(ds);
+					bos 			  = new BufferedOutputStream(new FileOutputStream( pathFiles + (msg.path.substring(msg.path.lastIndexOf('\\')+1)) ));
+					byte [] byteArray = new byte[8192];
+				 
+					len = ds.readInt();
+					
+					int i; 
+					while ((i = bis.read(byteArray)) != -1){
+												
+					    bos.write(byteArray,0,i); 
+					    len -= i;
+					    
+					    if(len <= 0)
+					    	break; 
+					    
+					} 
+					
+					System.err.println("File GET");
+					
+				} finally {
+					bos.close();
+					bis.close();
+				}
 			}
 			
 			return msg;
