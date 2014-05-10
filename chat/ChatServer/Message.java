@@ -1,4 +1,5 @@
 import java.io.*;
+import java.net.Socket;
 import java.util.Date;
 
 public class Message implements Serializable {
@@ -47,11 +48,10 @@ public class Message implements Serializable {
 			os.close();
 		} 
 
-		byte[] packet 	    = bs.toByteArray();  
+		byte[] packet = bs.toByteArray();  
 		
 		DataOutputStream ds = new DataOutputStream(out); 
-
-		System.out.println(out);System.out.println(ds);
+ 
 		ds.writeInt(packet.length); 
 		ds.write(packet);  
 		
@@ -66,8 +66,7 @@ public class Message implements Serializable {
 				ds.write(byteArray,0,in);
 			}
 			bis.close(); 
-			
-			System.err.println("s File Send ");
+			 
 		}  
 		
 		ds.flush();
@@ -88,8 +87,7 @@ public class Message implements Serializable {
 		ObjectInputStream os 	= new ObjectInputStream(bs);
 		try {
 						
-			Message msg = (Message) os.readObject();				
-			
+			Message msg = (Message) os.readObject();	 
 			
 			if ( ! msg.isFile) {
 				msg.text = (String) os.readUTF();
@@ -101,6 +99,7 @@ public class Message implements Serializable {
 				BufferedInputStream  bis = null; 
 				
 				String newFilePath   = filesDir + (msg.path.substring(msg.path.lastIndexOf('\\')+1));
+								
 				try {
 					bis  		      = new BufferedInputStream(ds);
 					bos 			  = new BufferedOutputStream(new FileOutputStream(newFilePath));
@@ -108,24 +107,25 @@ public class Message implements Serializable {
 				 
 					len = ds.readInt();
 					
-					int i; 
-					while ((i = bis.read(byteArray)) != -1){
-												
-					    bos.write(byteArray,0,i); 
-					    len -= i;
-					    
-					    if(len <= 0)
-					    	break; 					    
+					int i;  
+					while (len > 0){  
+						
+						i = bis.read(byteArray);
+						if(i != -1) {
+							bos.write(byteArray,0,i); 
+						    len -= i; 	
+						} else {
+							break;
+						}
 					} 
-				} finally {
+					
+				} finally { 
 					bos.close();
-					bis.close();
-				}
+					//bis.close(); 
+				} 
 				
-				msg.path = newFilePath; 
-
-
-			}
+				msg.path = newFilePath;    
+			} 
 			
 			return msg;
 			

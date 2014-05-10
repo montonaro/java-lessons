@@ -16,6 +16,10 @@ public class Main {
 			final OutputStream os 	= socket.getOutputStream();
 			
 			final String pathFiles 		= "C:\\tmp\\users\\";
+			
+			
+			
+			
 
 			System.out.println("Enter login: ");
 			final String login = scanner.nextLine();

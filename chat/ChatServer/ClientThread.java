@@ -31,19 +31,23 @@ public class ClientThread extends Thread {
 		try {
 			final InputStream is  = socket.getInputStream();
 			final OutputStream os = socket.getOutputStream();
+			 
 			
-			while ( ! isInterrupted()) {
-				if (pos < msg.size()){
+			while ( ! isInterrupted()) { 
+				
+				if(socket.isClosed()){
+					break;
+				}
+				
+				if (pos < msg.size()){ 
 					listToBytes(os);
 				}
 				
 				Message m = Message.readFromStream(is, filesDir);
-				if (m != null){
-					msg.add(m); 
-				}
-				
-				
-			}
+				if (m != null){  
+					msg.add(m);   
+				}  
+			} 
 			 
 			socket.close(); 
 		} catch (Exception e) {

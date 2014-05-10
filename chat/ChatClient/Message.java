@@ -80,12 +80,12 @@ public class Message implements Serializable {
 		ds.read(packet);
 		
 		ByteArrayInputStream bs = new ByteArrayInputStream(packet);
-		ObjectInputStream os = new ObjectInputStream(bs);
+		ObjectInputStream os    = new ObjectInputStream(bs);
 		try {
 			Message msg = (Message) os.readObject();
 			
 			if(msg.from.equals(login)){
-				//return null;
+				return null;
 			} 
 			
 			if(!msg.to.isEmpty() && !msg.to.equals(login)){
@@ -99,9 +99,11 @@ public class Message implements Serializable {
 				msg.path = (String) os.readUTF(); 				  
 				BufferedOutputStream bos = null; 				  
 				BufferedInputStream  bis = null; 
+				String filename 		 = msg.path.substring(msg.path.lastIndexOf('\\')+1);
+				
 				try {
 					bis  		      = new BufferedInputStream(ds);
-					bos 			  = new BufferedOutputStream(new FileOutputStream( pathFiles + (msg.path.substring(msg.path.lastIndexOf('\\')+1)) ));
+					bos 			  = new BufferedOutputStream(new FileOutputStream( pathFiles + filename ));
 					byte [] byteArray = new byte[8192];
 				 
 					len = ds.readInt();
@@ -113,16 +115,15 @@ public class Message implements Serializable {
 					    len -= i;
 					    
 					    if(len <= 0)
-					    	break; 
-					    
-					} 
-					
-					System.err.println("File GET");
+					    	break;  
+					}  
 					
 				} finally {
 					bos.close();
-					bis.close();
+					//bis.close();
 				}
+				
+				msg.text = "Был принят файл:"+filename; 
 			}
 			
 			return msg;
